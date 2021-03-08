@@ -9,15 +9,23 @@ const routes: Routes = [
     children: [
       {
         path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        loadChildren: () => import('../pages/dances/dances.module').then(m => m.DancesPageModule)
       },
       {
         path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        loadChildren: () => import('../pages/coaches/coaches.module').then(m => m.CoachesPageModule)
       },
       {
         path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        loadChildren: () => import('../pages/groups/groups.module').then(m => m.GroupsPageModule)
+      },
+      {
+        path: 'tab4',
+        loadChildren: () => import('../pages/participants/participants.module').then(m => m.ParticipantsPageModule)
+      },
+      {
+        path: 'tab5',
+        loadChildren: () => import('../pages/profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
         path: '',
