@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'registration' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="register()" [formGroup]="formGroup">
+    <ion-col>
+      <ion-item class="ion-margin">
+        <ion-label position="floating">{{'auth.first_name' | translate}} *</ion-label>
+        <ion-input name="firstName" formControlName="firstNameControl" required></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin">
+        <ion-label position="floating">{{'auth.last_name' | translate}}</ion-label>
+        <ion-input name="lastName" formControlName="lastNameControl"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin">
+        <ion-label position="floating">{{'auth.middle_name' | translate}}</ion-label>
+        <ion-input name="middleName" formControlName="middleNameControl"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin">
+        <ion-label position="floating">{{'auth.email' | translate}} *</ion-label>
+        <ion-input type="email" name="email" formControlName="emailControl"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin">
+        <ion-label position="floating">{{'auth.login' | translate}} *</ion-label>
+        <ion-input name="login" formControlName="loginControl" required></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin">
+        <ion-label position="floating">{{'auth.password' | translate}} *</ion-label>
+        <ion-input type="password" formControlName="passwordControl" name="password" required></ion-input>
+      </ion-item>
+      <ion-button [disabled]="!formGroup.valid" class="ion-margin" expand="block" type="submit">
+        {{'auth.register' | translate}}
+      </ion-button>
+      <div class="ion-text-end ion-margin">
+        <ion-text>{{'have_account' | translate}} </ion-text>
+        <ion-router-link href="/login" class="underline">{{'auth.sign_in' | translate}}</ion-router-link>
+      </div>
+    </ion-col>
+  </form>
+</ion-content>

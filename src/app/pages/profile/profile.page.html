@@ -1,11 +1,79 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Profile
+      {{'tabs.profile' | translate}}
     </ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="openSettings()">
+        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-img src="https://i.ytimg.com/an_webp/TfVYxnhuEdU/mqdefault_6s.webp?du=3000&sqp=COPj1IEG&rs=AOn4CLCrFCK33GL_A1gUVwsu-UHJJR3wdw"></ion-img>
+<ion-content class="ion-margin">
+  <ion-col class="ion-margin">
+    <ion-col *ngIf="profile != null">
+      <ion-item class="ion-margin-bottom">
+        <ion-label>{{'auth.first_name' | translate}}</ion-label>
+        <ion-text *ngIf="!editing['first_name']">
+          {{profile.first_name}}
+        </ion-text>
+        <ion-input *ngIf="editing['first_name']" class="ion-text-right" value="{{profile.first_name}}"
+                   (ionChange)="updateValue($event, 'first_name')"></ion-input>
+
+        <ion-icon (click)="editing['first_name'] = !(editing['first_name'])" class="ion-padding-start"
+                  [name]="(editing['first_name']) ? 'save-outline' : 'pencil'"></ion-icon>
+      </ion-item>
+
+      <ion-item class="ion-margin-bottom">
+        <ion-label>{{'auth.last_name' | translate}}</ion-label>
+        <ion-text *ngIf="!editing['last_name']">
+          {{profile.last_name}}
+        </ion-text>
+        <ion-input *ngIf="editing['last_name']" class="ion-text-right" value="{{profile.last_name}}"
+                   (ionChange)="updateValue($event, 'last_name')"></ion-input>
+
+        <ion-icon (click)="editing['last_name'] = !(editing['last_name'])" class="ion-padding-start"
+                  [name]="(editing['last_name']) ? 'save-outline' : 'pencil'"></ion-icon>
+      </ion-item>
+
+      <ion-item class="ion-margin-bottom">
+        <ion-label>{{'auth.login' | translate}}</ion-label>
+        <ion-text *ngIf="!editing['login']">
+          {{profile.login}}
+        </ion-text>
+        <ion-input *ngIf="editing['login']" class="ion-text-right" value="{{profile.login}}"
+                   (ionChange)="updateValue($event, 'login')">
+        </ion-input>
+
+        <ion-icon (click)="editing['login'] = !(editing['login'])" class="ion-padding-start"
+                  [name]="(editing['login']) ? 'save-outline' : 'pencil'"></ion-icon>
+      </ion-item>
+
+      <ion-item class="ion-margin-bottom">
+        <ion-label>{{'auth.email' | translate}}</ion-label>
+
+        <ion-text *ngIf="!editing['email']">
+          {{profile.email}}
+        </ion-text>
+        <ion-input *ngIf="editing['email']" class="ion-text-right" value="{{profile.email}}"
+                   (ionChange)="updateValue($event, 'email')">
+        </ion-input>
+
+        <ion-icon (click)="editing['email'] = !(editing['email'])" class="ion-padding-start"
+                  [name]="(editing['email']) ? 'save-outline' : 'pencil'"></ion-icon>
+      </ion-item>
+
+      <!--      <ion-item class="ion-margin-bottom">-->
+      <!--        <ion-label>{{'profile.change_password' | translate}}</ion-label>-->
+      <!--        <ion-icon class="ion-padding-start" name="pencil"></ion-icon>-->
+      <!--      </ion-item>-->
+    </ion-col>
+
+    <ion-button class="ion-margin-start" color="danger" (click)="logOut()">
+      {{'sign_out' | translate}}
+    </ion-button>
+  </ion-col>
+
 </ion-content>

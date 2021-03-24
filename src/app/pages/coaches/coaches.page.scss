@@ -4,19 +4,47 @@ ion-grid {
   border-style: hidden;
 
   ion-row:first-child {
-    background-color:  #2dd36f;
+    background-color: cornflowerblue;
     font-weight: bold;
   }
+
   ion-col {
     border: 1px solid black;
     border-bottom: 0;
     border-right: 0;
   }
+
   ion-col:last-child {
     border-right: 1px solid black;
+  }
+
+  ion-row:hover:nth-last-child(n -1) {
+    background-color: #3a7be0;
   }
 
   ion-row:last-child {
     border-bottom: 1px solid black;
   }
+
+  .even-row {
+    background-color: #262626;
+  }
+
+  .odd-row {
+    background-color: steelblue;
+  }
+}
+
+ul li {
+  padding-left: 5px;
+  padding-right: 5px;
+  display: inline;
+}
+
+ul {
+  float: right;
+}
+
+.active-page {
+  color: #4c8dff;
 }

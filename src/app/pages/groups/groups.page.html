@@ -1,9 +1,86 @@
+<!--suppress AngularInvalidExpressionResultType -->
 <ion-header>
   <ion-toolbar>
-    <ion-title>Groups</ion-title>
+    <ion-title>{{'tabs.groups' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div *ngIf="groups != null" class="ion-padding">
+    <ngx-datatable
+      class="dark"
+      [limit]="preferences.pageSize"
+      [rows]="rows"
+      [rowHeight]="50"
+      [columnMode]="'force'"
+      [sortType]="'multi'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [messages]="{
+        'emptyMessage': '',
+        'totalMessage': 'table.count' | translate
+      }">
 
+      <ngx-datatable-column name="Id"></ngx-datatable-column>
+
+      <ngx-datatable-column name="Name">
+        <ng-template ngx-datatable-header-template>
+          <span>{{'table.name' | translate}}</span>
+        </ng-template>
+        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span
+              title="Double click to edit"
+              *ngIf="!editing[rowIndex]">
+              {{value}}
+            </span>
+          <label>
+            <input
+              autofocus
+              (blur)="updateValue($event, 'name', rowIndex)"
+              *ngIf="editing[rowIndex]"
+              type="text"
+              [value]="value"
+            />
+          </label>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Creation date">
+        <ng-template ngx-datatable-header-template>
+          <span>{{'table.creation_date' | translate}}</span>
+        </ng-template>
+        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+             <span
+               title="Double click to edit"
+               (dblclick)="editing[rowIndex] = true"
+               *ngIf="!editing[rowIndex]">
+              {{value | date:'dd-MM-yyyy'}}
+            </span>
+
+          <ion-button *ngIf="editing[rowIndex]" size="small">
+            <ion-datetime min="2000" max="2040" [value]="value"
+                          (ionChange)="updateValue($event, 'creation_date', rowIndex)"></ion-datetime>
+          </ion-button>
+        </ng-template>
+
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Action">
+        <ng-template ngx-datatable-header-template>
+          <span>{{'table.action' | translate}}</span>
+        </ng-template>
+        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+          <button (click)="editing[rowIndex]=true" *ngIf="!editing[rowIndex]">
+            {{'table.edit' | translate}}
+          </button>
+          <button (click)="editing[rowIndex]=false" *ngIf="editing[rowIndex]">
+            {{'table.save' | translate}}
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+
+  <ion-col *ngIf="error != null">
+    <app-error-view error="{{error}}"></app-error-view>
+  </ion-col>
 </ion-content>

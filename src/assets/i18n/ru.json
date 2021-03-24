@@ -4,7 +4,47 @@
     "coaches": "Тренеры",
     "groups": "Группы",
     "participants": "Участники",
-    "profile": "Профиль"
+    "profile": "Профиль",
+    "settings": "Настройки"
   },
-  "none": "Нет"
+  "none": "Нет",
+  "sign_in": "Вход",
+  "sign_out": "Выход",
+  "registration": "Регистрация",
+  "no_account": "Нет аккаунта?",
+  "have_account": "Есть аккаунт?",
+  "auth": {
+    "first_name": "Имя",
+    "last_name": "Фамилия",
+    "middle_name": "Отчество",
+    "email": "Email",
+    "login": "Логин",
+    "password": "Пароль",
+    "sign_in": "Войти",
+    "register": "Зарегистрироваться"
+  },
+  "participants": {
+    "items_found": "найдено",
+    "group": "Группа",
+    "points": "очков"
+  },
+  "profile": {
+    "change_password": "Изменить пароль",
+    "page_size": "Размер страницы",
+    "language": "Язык",
+    "update_period": "Период обновления (сек.)"
+  },
+  "modal": {
+    "image": "Изображение",
+    "close": "Закрыть"
+  },
+  "table": {
+    "name": "Имя",
+    "creation_date": "Дата создания",
+    "dance": "Танец",
+    "action": "Действие",
+    "edit": "изм.",
+    "save": "сохр.",
+    "count": "штук"
+  }
 }

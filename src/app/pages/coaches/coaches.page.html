@@ -7,22 +7,32 @@
 </ion-header>
 
 <ion-content class="ion-margin">
+  <ion-text color="primary">
+    <h3 class="ion-margin">{{service.itemCount}} {{'participants.items_found' | translate }} </h3>
+  </ion-text>
   <ion-grid class="ion-margin">
     <ion-row>
-      <ion-col>ID</ion-col>
-      <ion-col>First Name</ion-col>
-      <ion-col>Last Name</ion-col>
-      <ion-col>Middle Name</ion-col>
-      <ion-col>Dance</ion-col>
+      <ion-col>Id</ion-col>
+      <ion-col>{{'auth.first_name' | translate}}</ion-col>
+      <ion-col>{{'auth.last_name' | translate}}</ion-col>
+      <ion-col>{{'auth.middle_name' | translate}}</ion-col>
+      <ion-col>{{'table.dance' | translate}}</ion-col>
     </ion-row>
-    <ion-row *ngFor='let coach of service.coaches; index as i'>
+    <ion-row [className]="i % 2 == 0 ? 'even-row' : 'odd-row'"
+             *ngFor='let coach of service.coachesOnPage; index as i'>
       <ion-col>{{i + 1}}</ion-col>
       <ion-col>{{coach.first_name}}</ion-col>
       <ion-col>{{coach.last_name}}</ion-col>
       <ion-col>{{coach.middle_name}}</ion-col>
-      <ion-col>{{coach.dance?.name || 'NoNE'}}</ion-col>
-      {{coach.dance?.name}}
+      <ion-col>{{coach.dance?.name || ('none' | translate)}}</ion-col>
     </ion-row>
+
   </ion-grid>
 
+  <ul class="ion-margin" *ngIf="service.pages > 1">
+    <li *ngFor="let page of service.pageNumbers"
+        [ngClass]="(service.selectedItem === page) ? 'active-page' : ''">
+      <a (click)="service.toPage(page)">{{page + 1}}</a>
+    </li>
+  </ul>
 </ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'tabs.settings' | translate}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="main/tabs/tab5"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-col>
+    <ion-item class="ion-margin-bottom">
+      <ion-label class="ion-margin-end">{{'profile.page_size' | translate}}</ion-label>
+      <ion-input (ionChange)="updatePageSize($event)" class="ion-text-right" name="pageSize"
+                 [value]="preferences.pageSize">
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-label class="ion-margin-end">{{'profile.language' | translate}}</ion-label>
+      <ion-select (ionChange)="updateLanguage($event)" name="lang" [value]="preferences.forcedLanguage">
+        <ion-select-option value="ru">
+          Russian
+        </ion-select-option>
+        <ion-select-option value="en">
+          English
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="ion-margin-bottom">
+      <ion-label class="ion-margin-end">{{'profile.update_period' | translate}}</ion-label>
+      <ion-input (ionChange)="updateUpdatePeriod($event)" class="ion-text-right" name="updatePeriod"
+                 [value]="preferences.updatePeriodInSec">
+      </ion-input>
+    </ion-item>
+  </ion-col>
+
+</ion-content>

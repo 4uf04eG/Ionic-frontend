@@ -17,9 +17,27 @@ export interface ApiInterface {
 
   getParticipants(): Observable<QueryList<Participant>>;
 
-  register(user: User): Observable<ApiResponse>;
+
+  updateUser(user: User): Observable<ApiResponse>;
+
+  updateDance(dance: Dance): Observable<ApiResponse>;
+
+  updateCoach(coach: Coach): Observable<ApiResponse>;
+
+  updateGroup(group: Group): Observable<ApiResponse>;
+
+
+  updateParticipant(participant: Participant): Observable<ApiResponse>;
+
+
+  register(user: User): Observable<Token>;
 
   signIn(login: string, password: string): Observable<Token>;
 
   signOut(): Observable<ApiResponse>;
+
+
+  updateToken(): Observable<Token>;
+
+  getCurrentUser(): Observable<User>;
 }

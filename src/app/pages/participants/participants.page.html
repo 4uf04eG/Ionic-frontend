@@ -1,9 +1,55 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Participants</ion-title>
+    <ion-title>{{'tabs.participants' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-col class="ion-margin ion-padding-top" *ngIf="participants != null">
+    <ion-text color="primary">
+      <h3 class="ion-margin">{{participants.count}} {{'participants.items_found' | translate }} </h3>
+    </ion-text>
+    <ion-card *ngFor="let participant of participants.data; index as i" class="ion-margin">
+      <ion-row class="ion-justify-content-between">
+        <ion-card-content>
+          <ion-card-title>
+            <ion-text class="ion-padding-end" color="primary">{{i + 1}}</ion-text>
+            <ion-text class="ion-padding-end" *ngIf="!editing[i]">{{participant.last_name}}</ion-text>
+            <ion-input *ngIf="editing[i]" [value]="participant.last_name"
+                       (ionChange)="updateValue($event, 'last_name', i)"></ion-input>
+            <ion-chip outline color="secondary">
+              <ion-text class="ion-padding-end" *ngIf="!editing[i]">{{participant.points}}</ion-text>
+              <ion-input *ngIf="editing[i]" size="small" [value]="participant.points"
+                         (ionChange)="updateValue($event, 'points', i)"></ion-input>
+              {{'participants.points' | translate }}
+            </ion-chip>
+          </ion-card-title>
+          <ion-card-subtitle>
+            <ion-button size="small" (click)="showGroup(participant)">
+              <ion-icon slot="start" name="people-outline"></ion-icon>
+              {{'participants.group' | translate }}
+            </ion-button>
+            <ion-button size="small" (click)="editing[i] = !(editing[i])">
+              <ion-icon [name]="editing[i] ? 'save-outline' :'pencil'"></ion-icon>
+            </ion-button>
+          </ion-card-subtitle>
+        </ion-card-content>
+        <ion-img *ngIf="participant.image_path != null" (click)="showImage(participant)" class="ion-margin-end"
+                 [src]="participant.image_path"></ion-img>
+        <ion-buttons *ngIf="editing[i]">
+          <input class="file-input" #fileBrowser type="file" (change)="uploadImage(i, $event)">
+          <ion-button (click)="fileBrowser.click()">
+            <ion-icon name="cloud-upload-outline"></ion-icon>
+          </ion-button>
+          <ion-button *ngIf="participant.image_path != null" (click)="deleteImage(i)">
+            <ion-icon color="red" name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-row>
+    </ion-card>
+  </ion-col>
 
+  <ion-col *ngIf="error != null">
+    <app-error-view error="{{error.message}}"></app-error-view>
+  </ion-col>
 </ion-content>

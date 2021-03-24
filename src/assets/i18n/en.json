@@ -4,7 +4,47 @@
     "coaches": "Coaches",
     "groups": "Groups",
     "participants": "Participants",
-    "profile": "Profile"
+    "profile": "Profile",
+    "settings": "Settings"
   },
-  "none": "None"
+  "none": "None",
+  "sign_in": "Sign In",
+  "sign_out": "Sign Out",
+  "registration": "Registration",
+  "no_account": "Have no account?",
+  "have_account": "Have an account?",
+  "auth": {
+    "login": "Login",
+    "password": "Password",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "middle_name": "Middle name",
+    "email": "Email",
+    "sign_in": "Sign In",
+    "register": "Register"
+  },
+  "participants": {
+    "items_found": "items found",
+    "group": "Group",
+    "points": "points"
+  },
+  "profile": {
+    "change_password": "Change password",
+    "page_size": "Page size",
+    "language": "Language",
+    "update_period": "Update period (sec)"
+  },
+  "modal": {
+    "image": "Image",
+    "close": "Close"
+  },
+  "table": {
+    "name": "Name",
+    "creation_date": "Creation date",
+    "dance": "Dance",
+    "action": "Action",
+    "edit": "edit",
+    "save": "save",
+    "count": "items"
+  }
 }

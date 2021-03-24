@@ -1,0 +1,11 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>{{'modal.image' | translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModel()">{{'modal.close' | translate}}</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-img [src]="image"></ion-img>
+</ion-content>

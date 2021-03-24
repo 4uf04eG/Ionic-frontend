@@ -1,27 +1,33 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from "./guards/auth.guard";
+
+export const RootPaths = {
+  login: 'login',
+  registration: 'registration',
+  main: 'main',
+  all: ''
+};
 
 const routes: Routes = [
   {
-    path: '',
+    path: RootPaths.login,
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthPageModule)
   },
   {
-    path: 'main',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    path: RootPaths.main,
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    canActivate: [AuthGuard]
   },
   {
-    path: 'participants',
-    loadChildren: () => import('./pages/participants/participants.module').then(m => m.ParticipantsPageModule)
+    path: RootPaths.registration,
+    loadChildren: () => import('./pages/registration/registration.module').then(m => m.RegistrationPageModule)
   },
   {
-    path: 'groups',
-    loadChildren: () => import('./pages/groups/groups.module').then(m => m.GroupsPageModule)
+    path: RootPaths.all,
+    redirectTo: '/' + RootPaths.login,
+    pathMatch: 'full'
   },
-  {
-    path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthPageModule)
-  }
 ];
 
 @NgModule({
